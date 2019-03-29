@@ -1,0 +1,24 @@
+{
+  "name": "workshop-k8s",
+  "version": "1.0.0",
+  "description": "workshop at lgt",
+  "main": "index.js",
+  "scripts": {
+    "start": "mdx-deck deck.mdx",
+    "build": "mdx-deck build deck.mdx --no-html"
+  },
+  "author": "Thomas Vogel",
+  "license": "MIT",
+  "devDependencies": {
+    "file-loader": "^2.0.0",
+    "mdx-deck": "^1.7.0",
+    "mdx-deck-code-surfer": "^0.5.5",
+    "raw-loader": "^1.0.0"
+  },
+  "dependencies": {
+    "npm": "^6.4.0",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "styled-components": "^3.4.5"
+  }
+}

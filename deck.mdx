@@ -1,0 +1,252 @@
+export {default as theme} from './src';
+import {Head, Image} from 'mdx-deck';
+import {Layout, LayoutNoFooter, CodeSanbox, BGImage, FlexDiv} from './src';
+import {CodeSurfer} from 'mdx-deck-code-surfer';
+import nightOwl from 'prism-react-renderer/themes/nightOwl';
+
+<Head>
+  <title>Workshop - k8s 101 terminal edition</title>
+</Head>
+
+<BGImage src={require('file-loader!./images/k8s.png')} opacity={0.5} />
+
+# Kubernetes Workshop
+
+### Einsteiger Version
+
+---
+
+# Thomas Vogel
+
+<FlexDiv>
+  <Image
+    style={{ width: '300px',height:'300px', marginBottom:40 }}
+    src={require('file-loader!./images/arkulpa.png')}
+  />
+</FlexDiv>
+<FlexDiv>
+  <Image
+    style={{ width: '200px',height:'200px' }}
+    src={require('file-loader!./images/agent.png')}
+  />
+
+  <Image
+    style={{ width: '175px',height:'200px' }}
+    src={require('file-loader!./images/worker.svg')}
+  />
+</FlexDiv>
+---
+
+export default Layout;
+
+# Begriffserklärung
+
+---
+
+export default Layout;
+
+# Kubernetes
+
+Ist Googles Open-Source-System zum Management von Containern
+
+---
+
+export default Layout;
+
+# Master
+
+Führt die Kubernetes-API aus und kontrolliert den Cluster.
+
+---
+
+export default Layout;
+
+# Node
+
+Worker Nodes sind virtuelle oder physische Maschinen auf denen die Pods ausgeführt werden.
+
+---
+
+export default Layout;
+
+# Pod
+
+Mit Kubernetes werden Container in sogenannten Pods ausgeführt. Ein Pod stellt eine Basiseinheit dar, die einen oder mehrere Container hostet.
+
+---
+
+export default Layout;
+
+# Replication Controller
+
+Kontrolliert, wie viele identische Kopien eines Pods irgendwo auf dem Cluster laufen sollen.
+
+---
+
+export default Layout;
+
+# Service
+
+Ein automatisch konfigurierter Load Balancer, der über den gesamten Cluster hinweg ausgeführt wird.
+
+---
+
+export default Layout;
+
+# Namespace
+
+Ein Namespage ist ein Organisationseinheit, werden oft auch als virtuelle cluster bezeichnet.
+
+---
+
+export default Layout;
+
+# kubectl
+
+Commandline Tool für Kubernetes.
+
+---
+
+export default Layout;
+
+# Konfigurationen
+
+Kubernetes Konfigurationen können in json oder yaml abgelegt werden.
+
+---
+
+export default Layout;
+
+<Image src={require('file-loader!./images/enough.gif')} style={{width: 700, height: 500}} />
+
+---
+
+export default LayoutNoFooter;
+
+# Anbieter für managed k8s
+
+- Google Container Engine
+- Digital Ocean
+- Azure Managed Kubernetes
+- IONOS Kubernetes
+
+---
+
+export default Layout;
+
+# Configs
+
+---
+
+export default Layout;
+
+# namespace config
+
+```yaml
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: workshop
+```
+
+---
+
+export default Layout;
+
+# namespace anlegen
+
+    kubectl apply -f namespace.yaml
+
+---
+
+export default Layout;
+
+# deployment config
+
+```yaml
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: blog
+  namespace: workshop
+  labels:
+    app: blog
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: blog
+```
+
+---
+
+export default Layout;
+
+```yaml
+template:
+  metadata:
+    labels:
+      app: blog
+  spec:
+    containers:
+      - name: blog
+        image: ghost:2.6-alpine
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 2368
+        env:
+          - name: url
+            value: http://localhost
+```
+
+---
+
+export default Layout;
+
+# Blog anlegen
+
+    kubectl apply -f deployment.yaml
+
+export default LayoutNoFooter;
+
+---
+
+export default Layout;
+
+# demo time
+
+<Image src={require('file-loader!./images/demo.gif')} style={{width: 700, height: 500}} />
+
+---
+
+export default Layout;
+
+# alle pods anzeigen
+
+    kubectl -n workshop get pods -w
+
+---
+
+export default Layout;
+
+# Portforward auf localhost
+
+    kubectl -n workshop port-forward <pod-name> 2368
+
+---
+
+export default LayoutNoFooter;
+
+# Übung
+
+<Image src={'https://media.giphy.com/media/qUdjw34AA7EKQ/giphy.gif'} style={{width: 700, height: 500}} />
+
+---
+
+export default Layout;
+
+- Installiere und starte Minikube
+- Installiere kubectl
+- Erstell den Namespace "workshop"
+- Nimm ein Docker Image deiner Wahl und deploy es auf die Minikube
+- Bei Fragen gerne fragen
